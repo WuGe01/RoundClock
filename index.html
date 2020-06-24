@@ -38,8 +38,8 @@
             var mil = now.getMilliseconds();
             var smoothsec = sec + (mil / 1000);
             var smoothmin = min + (smoothsec / 60);
-            var xs=Math.cos(degree(smoothsec * 6) - 90)*200;
-            var ys=Math.sin(degree(smoothsec * 6) - 90)*200;
+            var xs=Math.cos(degree(smoothsec * 6) - 90)*257;
+            var ys=Math.sin(degree(smoothsec * 6) - 90)*257;
             var x_s=Math.cos(degree(smoothsec * 6) - 90)*30;
             var y_s=Math.sin(degree(smoothsec * 6) - 90)*30;
             var xm=Math.cos(degree(smoothmin * 6) - 90)*180;
@@ -75,12 +75,12 @@
             ctx.stroke();
 
             ctx.beginPath();
-            ctx.lineWidth = 15;
+            ctx.lineWidth = 14;
             ctx.arc(300, 300, 250, degree(270), degree(smoothsec * 6) - 90);
             ctx.stroke();
 
             ctx.beginPath();
-            ctx.lineWidth = 15;
+            ctx.lineWidth = 14;
             ctx.arc(300, 300, 270, 0, 2*Math.PI);
             ctx.stroke();
         }
