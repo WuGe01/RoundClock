@@ -17,17 +17,17 @@
 </head>
 
 <body>
-    <canvas id="mycanvas" width="600" height="700">
+    <canvas id="mycanvas" width="700" height="700">
     </canvas>
     <script>
         const canvas = document.getElementById('mycanvas');
         const ctx = canvas.getContext('2d');
-        canvas.width = 600;
+        canvas.width = 700;
         canvas.height = 700;
         printHere();
-        function degree(e) {
-            let v = e * Math.PI / 180;
-            return v;
+        function degree(degree) {
+            var factor = Math.PI/180;
+            return degree*factor;
         }
         function printHere() {
             var now = new Date();
@@ -37,8 +37,9 @@
             var min = now.getMinutes();
             var sec = now.getSeconds();
             var mil = now.getMilliseconds();
-            var smoothsec = sec + (mil / 1000);
-            var smoothmin = min + (smoothsec / 60);
+            var smoothsec = sec+(mil/1000);
+            var smoothmin = min+(smoothsec/60);
+
             var xs=Math.cos(degree(smoothsec * 6) - 90)*257;
             var ys=Math.sin(degree(smoothsec * 6) - 90)*257;
             var x_s=Math.cos(degree(smoothsec * 6) - 90)*30;
@@ -51,65 +52,64 @@
             var yh=Math.sin(degree((hrs*30) - 90))*217;
             var x_h=Math.cos(degree((hrs*30) - 90))*10;
             var y_h=Math.sin(degree((hrs*30) - 90))*10;
-            ctx.fillRect(0, 0, 600, 700);
+            ctx.fillRect(0, 0, 700, 700);
 
-            console.log(sec);
 
 
             ctx.beginPath();
             ctx.strokeStyle = 'yellow';
             ctx.lineWidth = 14;
-            ctx.arc(300, 300, 270, 0, 2*Math.PI);
+            ctx.arc(350, 300, 270, 0, 2*Math.PI);
             ctx.stroke();
             
             ctx.beginPath();
             ctx.strokeStyle = 'yellow';
             ctx.lineWidth = 257;
-            ctx.arc(300, 300, 128.5, degree(270), degree(smoothsec * 6) - 90);
+            ctx.arc(350, 300, 128.5, degree(270), degree(smoothsec * 6) - 90);
             ctx.stroke();
 
             ctx.beginPath();
             ctx.strokeStyle = 'green';
             ctx.lineWidth = 237;
-            ctx.arc(300, 300, 118.5, degree(270), degree(smoothmin * 6) - 90);
+            ctx.arc(350, 300, 118.5, degree(270), degree(smoothmin * 6) - 90);
             ctx.stroke();    
 
             ctx.beginPath();
             ctx.strokeStyle = 'red';
             ctx.lineWidth = 217;
-            ctx.arc(300, 300, 108.5, degree(270), degree((hrs*30) - 90));
+            ctx.arc(350, 300, 108.5, degree(270), degree((hrs*30) - 90));
             ctx.stroke();  
 
             ctx.beginPath();
             ctx.lineWidth = 16;
             ctx.strokeStyle = 'red';
-            ctx.moveTo(300-x_h, 300-y_h);
-            ctx.lineTo(xh+300, yh+300);
+            ctx.moveTo(350-x_h, 300-y_h);
+            ctx.lineTo(xh+350, yh+300);
             ctx.stroke();
 
             ctx.beginPath();
             ctx.lineWidth = 12;
             ctx.strokeStyle = 'green';
-            ctx.moveTo(300-x_m, 300-y_m);
-            ctx.lineTo(xm+300, ym+300);
+            ctx.moveTo(350-x_m, 300-y_m);
+            ctx.lineTo(xm+350, ym+300);
             ctx.stroke();
 
             ctx.beginPath();
             ctx.lineWidth = 8;
             ctx.strokeStyle = 'yellow';
-            ctx.moveTo(300-x_s, 300-y_s);
-            ctx.lineTo(xs+300, ys+300);
+            ctx.moveTo(350-x_s, 300-y_s);
+            ctx.lineTo(xs+350, ys+300);
             ctx.stroke();
 
 
 
             ctx.font = "35px Microsoft JhengHei";
             ctx.fillStyle = 'rgba(00, 255, 255, 1)'
-            ctx.fillText(today, 175, 620);
+            ctx.fillText(today, 225, 620);
             
             ctx.font = "35px Microsoft JhengHei";
             ctx.fillStyle = 'rgba(00, 255, 255, 1)'
-            ctx.fillText(time+":"+mil, 160, 670);
+            ctx.fillText(time+":"+mil, 210, 670);
 
             ctx.fillStyle = 'rgba(0, 0, 0, 1)'
 
