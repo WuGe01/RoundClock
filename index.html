@@ -6,7 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>類比時鐘設計</title>
     <style>
-
+        body{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 
@@ -18,11 +24,6 @@
         const ctx = canvas.getContext('2d');
         canvas.width = 600;
         canvas.height = 700;
-        // ctx.strokeStyle = 'red';
-        // ctx.lineWidth = 17;
-        // ctx.shadowBlur = 15;
-        // ctx.shadowColor = 'red'
-        // ctx.fillStyle = "green";
         printHere();
         function degree(e) {
             let v = e * Math.PI / 180;
@@ -46,34 +47,37 @@
             var ym=Math.sin(degree(smoothmin * 6) - 90)*237;
             var x_m=Math.cos(degree(smoothmin * 6) - 90)*20;
             var y_m=Math.sin(degree(smoothmin * 6) - 90)*20;
-            var xh=Math.cos((hrs*30) - 90)*217;
-            var yh=Math.sin((hrs*30) - 90)*217;
-            var x_h=Math.cos((hrs*30) - 90)*10;
-            var y_h=Math.sin((hrs*30) - 90)*10;
+            var xh=Math.cos(degree((hrs*30) - 90))*217;
+            var yh=Math.sin(degree((hrs*30) - 90))*217;
+            var x_h=Math.cos(degree((hrs*30) - 90))*10;
+            var y_h=Math.sin(degree((hrs*30) - 90))*10;
             ctx.fillRect(0, 0, 600, 700);
-            
-            ctx.beginPath();
-            ctx.strokeStyle = 'yellow';
-            ctx.lineWidth = 14;
-            ctx.arc(300, 300, 250, degree(270), degree(smoothsec * 6) - 90);
-            ctx.stroke();
+
+            console.log(sec);
+
 
             ctx.beginPath();
             ctx.strokeStyle = 'yellow';
             ctx.lineWidth = 14;
             ctx.arc(300, 300, 270, 0, 2*Math.PI);
             ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.strokeStyle = 'yellow';
+            ctx.lineWidth = 257;
+            ctx.arc(300, 300, 128.5, degree(270), degree(smoothsec * 6) - 90);
+            ctx.stroke();
 
             ctx.beginPath();
             ctx.strokeStyle = 'green';
-            ctx.lineWidth = 14;
-            ctx.arc(300, 300, 230, degree(270), degree(smoothmin * 6) - 90);
+            ctx.lineWidth = 237;
+            ctx.arc(300, 300, 118.5, degree(270), degree(smoothmin * 6) - 90);
             ctx.stroke();    
 
             ctx.beginPath();
             ctx.strokeStyle = 'red';
-            ctx.lineWidth = 14;
-            ctx.arc(300, 300, 210, degree(270), degree(smoothmin * 6) - 90);
+            ctx.lineWidth = 217;
+            ctx.arc(300, 300, 108.5, degree(270), degree((hrs*30) - 90));
             ctx.stroke();  
 
             ctx.beginPath();
@@ -96,6 +100,18 @@
             ctx.moveTo(300-x_s, 300-y_s);
             ctx.lineTo(xs+300, ys+300);
             ctx.stroke();
+
+
+
+            ctx.font = "35px Microsoft JhengHei";
+            ctx.fillStyle = 'rgba(00, 255, 255, 1)'
+            ctx.fillText(today, 175, 620);
+            
+            ctx.font = "35px Microsoft JhengHei";
+            ctx.fillStyle = 'rgba(00, 255, 255, 1)'
+            ctx.fillText(time+":"+mil, 160, 670);
+
+            ctx.fillStyle = 'rgba(0, 0, 0, 1)'
 
         }
         setInterval(printHere, 10);
